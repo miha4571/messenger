@@ -26,4 +26,34 @@ public class HelloWorldController {
         return "hello-world-view";
     }
 
+    @GetMapping("/home")
+    public String renderViewHome(Model model) {
+        return "home";
+    }
+
+    @GetMapping("/register")
+    public String renderViewRegister(Model model) {
+        return "register";
+    }
+
+    @GetMapping("/messages")
+    public String renderViewMessages(Model model) {
+        return "messages";
+    }
+
+    @GetMapping("/users")
+    public String renderViewUsers(Model model) {
+        return "users";
+    }
+
+    @GetMapping("/message")
+    public String renderViewRead(Model model) {
+        return "message";
+    }
+
+    @GetMapping("/send")
+    public String renderViewSend(Model model) {
+        return "send";
+    }
+
 }
