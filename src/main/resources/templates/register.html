@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -9,5 +9,14 @@
     <p>
         <a href="/home">go back</a>
     </p>
+    <br/>
+    <form method="post" action="/register">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"/><br>
+        <label for="publicKey">Public key:</label>
+        <input type="text" id="publicKey" name="publicKey"/><br>
+        <br>
+        <input type="submit" value="Register"/><br>
+    </form>
 </body>
 </html>
