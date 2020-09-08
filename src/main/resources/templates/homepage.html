@@ -8,10 +8,10 @@
     <p>Welcome to a secure messenger app.</p>
     <p th:text="${greeting}"></p>
     <p>
-        <a href="/register">register</a>
+        <a th:if="${username == null}" href="/register">register</a>
     </p>
     <p>
-        <a href="/unregister">unregister</a>
+        <a th:unless="${username == null}" href="/unregister">unregister</a>
     </p>
     <p>
         <a href="/messages">view messages</a>
