@@ -5,9 +5,12 @@
     <title>View Message</title>
 </head>
 <body>
-    <p>Message content.</p>
     <p>
         <a href="/messages">go back</a>
     </p>
+    <p>Message content:</p>
+    <p th:text="'On: '+${message.getDateSent()}"></p>
+    <p th:text="'From: '+${message.getFromUser().getUsername()}"></p>
+    <p th:text="'Content: '+${message.getMessageContent()}"></p>
 </body>
 </html>

@@ -9,11 +9,10 @@
     <p>
         <a href="/home">go back</a>
     </p>
-    <form method="post" action="/send/1">
-        <label for="userId">User id:</label>
-        <input type="text" id="userId" name="userId"/><br>
+
+    <form method="post" th:action="@{'/send/'+${userId}}" th:object="${message}">
         <label for="message">Message:</label>
-        <input type="text" id="message" name="message"/><br>
+        <input type="text" id="message" th:field="*{messageContent}"/><br>
         <br>
         <input type="submit" value="Send"/><br>
     </form>

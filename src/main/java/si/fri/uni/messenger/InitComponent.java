@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @Component
 public class InitComponent {
@@ -13,16 +14,19 @@ public class InitComponent {
 
     private final HelloWorldRepository helloWorldRepository;
     private final UserService userService;
+    private final MessageService messageService;
 
-    public InitComponent(HelloWorldRepository helloWorldRepository, UserService userService) {
+    public InitComponent(HelloWorldRepository helloWorldRepository, UserService userService, MessageService messageService) {
         this.helloWorldRepository = helloWorldRepository;
         this.userService = userService;
+        this.messageService = messageService;
     }
 
     @PostConstruct
     private void init() {
 
         createTestUsers();
+        createTestMessages();
 
         log.debug("test debug message LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
         HelloWorldMessage test = new HelloWorldMessage();
@@ -34,5 +38,16 @@ public class InitComponent {
         userService.createUser("Franci", "1");
         userService.createUser("Poldi", "7");
         userService.createUser("Micka", "13");
+    }
+
+    private void createTestMessages() {
+        List<User> users = userService.getUsers();
+        User franci = users.get(0);
+        User poldi = users.get(1);
+        User micka = users.get(2);
+
+        messageService.createMessage(franci, micka, "How you doin?");
+        messageService.createMessage(franci, poldi, "Živjo kolega!");
+        messageService.createMessage(poldi, franci, "Živjo nazaj tebi kolega!");
     }
 }

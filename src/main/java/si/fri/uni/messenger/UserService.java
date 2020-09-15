@@ -21,6 +21,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+
     public User createUser(String username, String publicKey) {
         User user = new User();
         user.setUsername(username);

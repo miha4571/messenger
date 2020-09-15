@@ -7,22 +7,22 @@
 <body>
     <p>View all messages.</p>
     <p>
-        <a href="/message">read message</a>
+        <a href="/messages">read message</a>
     </p>
     <p>
         <a href="/home">go back</a>
     </p>
     <br>
-    <ul>
-        <li>
-            on 04/09/2020 from Mary: <a href="/message/1">Open</a>
-        </li>
-        <li>
-            on 03/09/2020 from Joe: <a href="/message/2">Open</a>
-        </li>
-        <li>
-            on 03/09/2020 from Bob: <a href="/message/3">Open</a>
-        </li>
-    </ul>
+    <div>Messages:</div>
+    <div th:if="${messages.isEmpty()}">
+        <span>No messages found.</span>
+    </div>
+    <div th:unless="${messages.isEmpty()}">
+        <ul th:each="message: ${messages}">
+            <li>
+                <span th:text="${'on '+message.getDateSent()+' from '+message.getFromUser().getUsername()+': '}"></span><a th:href="@{'/messages/'+${message.getId()}}">Open</span> </a>
+            </li>
+        </ul>
+    </div>
 </body>
 </html>
