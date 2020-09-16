@@ -22,16 +22,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    public String renderViewUsers(Model model) {
-
-        List<User> users = userService.getUsers();
-
-        model.addAttribute("users", users);
-
-        return "users-list";
-    }
-
     @GetMapping("/register")
     public String renderViewRegister(Model model, HttpServletResponse response) {
         return "register";
@@ -65,6 +55,16 @@ public class UserController {
 
         response.setHeader("Location", "/home");
         response.setStatus(302);
+    }
+
+    @GetMapping("/users")
+    public String renderViewUsers(Model model) {
+
+        List<User> users = userService.getUsers();
+
+        model.addAttribute("users", users);
+
+        return "users-list";
     }
 
 }
