@@ -13,18 +13,13 @@ import java.util.List;
 @SpringBootTest
 class MessengerAppApplicationTests {
 
-	@Autowired
-	private HelloWorldService helloWorldService;
-
 	@Test
 	void contextLoads() {
 	}
 
 	@Test
 	public void whenApplicationStarts_thenHibernateCreatesInitialRecords() {
-		List<HelloWorldMessage> msgs = helloWorldService.getList();
-		Assert.assertEquals(msgs.size(), 1);
-		Assert.assertNotEquals(msgs.size(), 2);
+
 	}
 
 }
