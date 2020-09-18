@@ -12,12 +12,10 @@ public class InitComponent {
 
     private static final Logger log = LoggerFactory.getLogger(InitComponent.class);
 
-    private final HelloWorldRepository helloWorldRepository;
     private final UserService userService;
     private final MessageService messageService;
 
-    public InitComponent(HelloWorldRepository helloWorldRepository, UserService userService, MessageService messageService) {
-        this.helloWorldRepository = helloWorldRepository;
+    public InitComponent(UserService userService, MessageService messageService) {
         this.userService = userService;
         this.messageService = messageService;
     }
@@ -28,10 +26,6 @@ public class InitComponent {
         createTestUsers();
         createTestMessages();
 
-        log.debug("test debug message LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
-        HelloWorldMessage test = new HelloWorldMessage();
-        test.setMessage("test");
-        helloWorldRepository.save(test);
     }
 
     private void createTestUsers() {
