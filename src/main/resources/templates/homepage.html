@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -7,12 +9,14 @@
 <body>
     <p>Welcome to a secure messenger app.</p>
     <p th:text="${greeting}"></p>
-    <p>
-        <a th:if="${username == null}" href="/register">register</a>
-    </p>
-    <p>
-        <a th:unless="${username == null}" href="/unregister">unregister</a>
-    </p>
+    <span sec:authorize="isAuthenticated()">Hello, <span sec:authentication="name"></span></span>
+    <div sec:authorize="!isAuthenticated()">
+        <a href="/login">login</a>
+        <a href="/register">register</a>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <a href="/login?logout">unregister</a>
+    </div>
     <p>
         <a href="/messages">view messages</a>
     </p>

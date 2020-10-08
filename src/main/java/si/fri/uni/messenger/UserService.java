@@ -2,6 +2,7 @@ package si.fri.uni.messenger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,12 @@ public class UserService {
 
     public User getUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);
+    }
+
+    public User getUserByUsername(String username) {
+        User user = new User();
+        user.setUsername(username);
+        return userRepository.findOne(Example.of(user)).orElse(null);
     }
 
     public User createUser(String username, String publicKey) {
