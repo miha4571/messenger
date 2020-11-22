@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>View Message</title>
 </head>
+<script type="text/javascript" th:src="@{/javascript/view-message.js}"></script>
+<script>
+    const messageContent = "[[${message.getMessageContent()}]]";
+</script>
 <body>
     <p>
         <a href="/messages">go back</a>
@@ -12,5 +16,7 @@
     <p th:text="'On: '+${message.getDateSent()}"></p>
     <p th:text="'From: '+${message.getFromUser().getUsername()}"></p>
     <p th:text="'Content: '+${message.getMessageContent()}"></p>
+    <button type="button" th:onclick="decodeMessage()">Decode Message</button><br>
+    <p id="decodedMessage">T</p>
 </body>
 </html>
