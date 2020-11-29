@@ -29,9 +29,9 @@ public class InitComponent {
     }
 
     private void createTestUsers() {
-        userService.createUser("Franci", "1");
-        userService.createUser("Poldi", "7");
-        userService.createUser("Micka", "13");
+        userService.createUser("Franci", "1", "test");
+        userService.createUser("Poldi", "7", "test");
+        userService.createUser("Micka", "13", "test");
     }
 
     private void createTestMessages() {

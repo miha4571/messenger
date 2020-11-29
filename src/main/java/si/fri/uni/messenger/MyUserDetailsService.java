@@ -25,7 +25,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
         UserDetails userDetails = org.springframework.security.core.userdetails.User
                 .withUsername(user.getUsername())
-                .password(user.getPublicKey())
+                .password(user.getPassword())
                 .roles("USER")
                 .build();
 

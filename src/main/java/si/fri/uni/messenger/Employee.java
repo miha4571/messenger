@@ -1,24 +1,9 @@
 package si.fri.uni.messenger;
 
-import javax.persistence.*;
-
-@Entity
-public class User {
-    @Id
-    @GeneratedValue
-    private Long id;
-    @Column(unique = true)
+public class Employee {
     private String username;
     private String password;
     private String publicKey;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -46,9 +31,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+        return "Employee{" +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", publicKey='" + publicKey + '\'' +
                 '}';

@@ -32,9 +32,10 @@ public class UserService {
         return userRepository.findOne(Example.of(user)).orElse(null);
     }
 
-    public User createUser(String username, String publicKey) {
+    public User createUser(String username, String password, String publicKey) {
         User user = new User();
         user.setUsername(username);
+        user.setPassword(password);
         user.setPublicKey(publicKey);
         user = userRepository.save(user);
         return user;

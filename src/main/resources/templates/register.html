@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Register</title>
 </head>
+<script type="text/javascript" th:src="@{/javascript/register.js}"></script>
 <body>
     <p>Create new user account.</p>
     <p>
@@ -11,13 +12,13 @@
     </p>
     <p th:text="${message}"></p>
     <br/>
-    <form method="post" action="/register">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"/><br>
-        <label for="publicKey">Public key:</label>
-        <input type="text" id="publicKey" name="publicKey"/><br>
-        <br>
-        <input type="submit" value="Register"/><br>
+
+    <form action="#" th:action="@{/register}" th:object="${employee}" method="post">
+        <p>Username: <input type="text" th:field="*{username}" /></p>
+        <p>Password: <input type="text" th:field="*{password}" /></p>
+        <p>Public Key: <input type="text" th:field="*{publicKey}" /></p>
+        <p><input type="submit" value="Submit" /></p>
     </form>
+    <p><button th:onclick="generateAndSaveKeyPair()">Generate Keys</button></p>
 </body>
 </html>
