@@ -12,11 +12,20 @@
     <p>
         <a href="/messages">go back</a>
     </p>
-    <p>Message content:</p>
-    <p th:text="'On: '+${message.getDateSent()}"></p>
-    <p th:text="'From: '+${message.getFromUser().getUsername()}"></p>
-    <p th:text="'Content: '+${message.getMessageContent()}"></p>
-    <button type="button" th:onclick="decodeMessage()">Decode Message</button><br>
-    <p id="decodedMessage">T</p>
+    <p th:text="'Logged in user id: '+${loggedInUserId}"></p>
+    <br>
+    <div>
+        <p>Message content:</p>
+        <p th:text="'On: '+${message.getDateSent()}"></p>
+        <p th:text="'From: '+${message.getFromUser().getUsername()}"></p>
+        <p th:text="'Content: '+${message.getMessageContent()}"></p>
+        <button type="button" th:onclick="decodeMessage()">Decode Message</button>
+    </div>
+    <br>
+    <div>
+        <p>Decoded message:</p>
+        <p id="decodedMessage">T</p>
+    </div>
+
 </body>
 </html>

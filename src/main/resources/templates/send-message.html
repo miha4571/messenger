@@ -10,7 +10,8 @@
     <p>
         <a href="/home">go back</a>
     </p>
-
+    <p th:text="'Receiver user id: ' + ${receiverUserId}"></p>
+    <br>
     <form method="post" th:action="@{'/send/'+${userId}}" th:object="${message}">
         <label for="message">Message:</label>
         <input type="text" id="message" th:field="*{messageContent}"/><br>

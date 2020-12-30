@@ -6,6 +6,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -27,9 +28,7 @@ public class UserService {
     }
 
     public User getUserByUsername(String username) {
-        User user = new User();
-        user.setUsername(username);
-        return userRepository.findOne(Example.of(user)).orElse(null);
+        return userRepository.findByUsername(username);
     }
 
     public User createUser(String username, String password, String publicKey) {
