@@ -31,5 +31,7 @@ async function generateAndSaveKeyPair() {
 
     localStorage.setItem("last_public", JSON.stringify(publicKeyExport));
 
-    console.log("private key generated");
+    console.log("Private key: " + JSON.stringify(privateKeyExport));
+    console.log("Public key: " + JSON.stringify(publicKeyExport));
+    console.log("Generation ok.");
 }

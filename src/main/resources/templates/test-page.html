@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Test Page</title>
 </head>
+<script type="text/javascript" th:src="@{/javascript/test-utils.js}"></script>
 <body>
     <p>Test utils.</p>
     <p>
@@ -17,7 +18,7 @@
     <div>
         <p>Message.</p>
         <input id="message" type="text"/>
-        <input type="button" value="Encode">
+        <input type="button" value="Encode" onclick="encodeTestMessage()">
     </div>
     <div>
         <p>Encoded message.</p>
@@ -31,7 +32,7 @@
     <div>
         <p>Encoded message.</p>
         <input id="encodedMessage2" type="text"/>
-        <input type="button" value="Decode">
+        <input type="button" value="Decode" onclick="decodeTestMessage()">
     </div>
     <div>
         <p>Decoded message message.</p>
