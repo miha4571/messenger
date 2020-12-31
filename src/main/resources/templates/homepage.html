@@ -6,6 +6,11 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
+<script type="text/javascript" th:src="@{/javascript/home.js}"></script>
+<script>
+    const userId = "[[${userId}]]";
+    registerCheck(userId);
+</script>
 <body>
     <p>Welcome to a secure messenger app.</p>
     <p th:text="${greeting}"></p>

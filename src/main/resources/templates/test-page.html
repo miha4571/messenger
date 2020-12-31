@@ -5,6 +5,11 @@
     <title>Test Page</title>
 </head>
 <script type="text/javascript" th:src="@{/javascript/test-utils.js}"></script>
+<script>
+    window.onload = function () {
+        document.getElementById("userData").textContent  = JSON.stringify(JSON.parse(localStorage.getItem("messengerAppData")), undefined, 2);
+    }
+</script>
 <body>
     <p>Test utils.</p>
     <p>
@@ -12,31 +17,37 @@
     </p>
     <br>
     <div>
-        <p>Public key of receiver for encoding.</p>
+        <p>Public key of receiver for encoding:</p>
         <input id="publicKey" type="text"/>
     </div>
     <div>
-        <p>Message.</p>
+        <p>Message:</p>
         <input id="message" type="text"/>
         <input type="button" value="Encode" onclick="encodeTestMessage()">
     </div>
     <div>
-        <p>Encoded message.</p>
+        <p>Encoded message:</p>
         <input id="encodedMessage" type="text"/>
     </div>
     <br>
     <div>
-        <p>Private key of receiver for decoding.</p>
+        <p>Private key of receiver for decoding:</p>
         <input id="privateKey" type="text"/>
     </div>
     <div>
-        <p>Encoded message.</p>
+        <p>Encoded message:</p>
         <input id="encodedMessage2" type="text"/>
         <input type="button" value="Decode" onclick="decodeTestMessage()">
     </div>
     <div>
-        <p>Decoded message message.</p>
+        <p>Decoded message message:</p>
         <input id="decodedMessage" type="text"/>
+    </div>
+    <br>
+    <div>
+        <p>User data stored in local storage:</p>
+        <input type="button" value="Clear storage" onclick="localStorage.removeItem('messengerAppData'); document.getElementById('userData').textContent  = JSON.stringify(JSON.parse(localStorage.getItem('messengerAppData')), undefined, 2);">
+        <pre id="userData"></pre>
     </div>
 </body>
 </html>

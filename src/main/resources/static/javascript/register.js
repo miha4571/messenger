@@ -1,6 +1,11 @@
 
 async function generateAndSaveKeyPair() {
 
+    let messengerAppData = {};
+    if(localStorage.getItem("messengerAppData")) {
+        messengerAppData = JSON.parse(localStorage.getItem("messengerAppData"));
+    }
+
     let username = document.getElementById("username").innerText;
 
     if(localStorage.getItem("private_" + username)) {
@@ -20,16 +25,16 @@ async function generateAndSaveKeyPair() {
     );
 
     let privateKeyExport = await crypto.subtle.exportKey("jwk", keyPair.privateKey);
-
     let publicKeyExport = await crypto.subtle.exportKey("jwk", keyPair.publicKey);
 
     let publicKeyInputField = document.getElementById("publicKey");
 
+    // write public key to form
     publicKeyInputField.value = JSON.stringify(publicKeyExport);
 
-    localStorage.setItem("last_private", JSON.stringify(privateKeyExport));
-
-    localStorage.setItem("last_public", JSON.stringify(publicKeyExport));
+    // save private key to local storage
+    messengerAppData.tempNewRegistrationPrivateKey = JSON.stringify(privateKeyExport);
+    localStorage.setItem("messengerAppData", JSON.stringify(messengerAppData));
 
     console.log("Private key: " + JSON.stringify(privateKeyExport));
     console.log("Public key: " + JSON.stringify(publicKeyExport));

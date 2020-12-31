@@ -1,5 +1,6 @@
 package si.fri.uni.messenger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class HomeController {
 
     private final UserDetailsService userDetailsService;
 
+    @Autowired
+    private UserService userService;
+
     public HomeController(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
@@ -29,6 +33,8 @@ public class HomeController {
 
         if(authentication != null && authentication.isAuthenticated()) {
             model.addAttribute("greeting", "You are logged in! Hello "+principal.getName());
+            User user = userService.getUserByUsername(principal.getName());
+            model.addAttribute("userId", user.getId());
         }
 
         return "homepage";
