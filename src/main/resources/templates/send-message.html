@@ -10,14 +10,30 @@
     <p>
         <a href="/home">go back</a>
     </p>
+    <p th:text="'Logged in user id: ' + ${loggedInUserId}"></p>
     <p th:text="'Receiver user id: ' + ${receiverUserId}"></p>
+    <p th:text="'Receiver public key: ' + ${receiverPublicKey}"></p>
+    <br>
+    <div>
+        <p>Public key of receiver for encoding:</p>
+        <input id="publicKey" type="text"/>
+    </div>
+    <div>
+        <p>Message:</p>
+        <input id="message" type="text"/>
+        <input type="button" value="Encode" onclick="encodeMessage()">
+    </div>
     <br>
     <form method="post" th:action="@{'/send/'+${userId}}" th:object="${message}">
-        <label for="message">Message:</label>
-        <input type="text" id="message" th:field="*{messageContent}"/><br>
+        <label for="encodedMessage">Encoded message:</label>
+        <input type="text" id="encodedMessage" th:field="*{messageContent}"/><br>
         <br>
-        <button type="button" th:onclick="encodeMessage()">Encode Message</button><br>
         <input type="submit" value="Send"/><br>
     </form>
 </body>
+<script>
+    const userId = "[[${userId}]]";
+    const receiverPublicKey = atob("[[${receiverPublicKey}]]");
+    document.getElementById("publicKey").value = receiverPublicKey;
+</script>
 </html>

@@ -10,6 +10,7 @@ public class User {
     @Column(unique = true)
     private String username;
     private String password;
+    @Column(length = 2074)
     private String publicKey;
 
     public Long getId() {

@@ -19,13 +19,28 @@
         <p th:text="'On: '+${message.getDateSent()}"></p>
         <p th:text="'From: '+${message.getFromUser().getUsername()}"></p>
         <p th:text="'Content: '+${message.getMessageContent()}"></p>
-        <button type="button" th:onclick="decodeMessage()">Decode Message</button>
+        <button type="button" onclick="decodeMessage()">Decode Message</button>
     </div>
     <br>
-    <div>
-        <p>Decoded message:</p>
-        <p id="decodedMessage">T</p>
-    </div>
 
+    <div>
+        <p>Private key of receiver for decoding:</p>
+        <input id="privateKey" type="text"/>
+    </div>
+    <div>
+        <p>Encoded message:</p>
+        <input id="encodedMessage2" type="text"/>
+        <input type="button" value="Decode" onclick="decodeMessage()">
+    </div>
+    <div>
+        <p>Decoded message message:</p>
+        <input id="decodedMessage" type="text"/>
+    </div>
 </body>
+<script>
+    const userId = "[[${loggedInUserId}]]";
+    const loggedInPrivateKey = JSON.parse(localStorage.getItem("messengerAppData")).userData[userId.toString()].privateKey;
+    document.getElementById("privateKey").value = loggedInPrivateKey;
+    document.getElementById("encodedMessage2").value = "[[${message.getMessageContent()}]]";
+</script>
 </html>

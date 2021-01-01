@@ -30,7 +30,7 @@ async function generateAndSaveKeyPair() {
     let publicKeyInputField = document.getElementById("publicKey");
 
     // write public key to form
-    publicKeyInputField.value = JSON.stringify(publicKeyExport);
+    publicKeyInputField.value = btoa(JSON.stringify(publicKeyExport));
 
     // save private key to local storage
     messengerAppData.tempNewRegistrationPrivateKey = JSON.stringify(privateKeyExport);

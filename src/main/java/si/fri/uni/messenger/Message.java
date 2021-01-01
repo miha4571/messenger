@@ -1,9 +1,6 @@
 package si.fri.uni.messenger;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -15,6 +12,7 @@ public class Message {
     private User fromUser;
     @OneToOne
     private User toUser;
+    @Column(length = 16383)
     private String messageContent;
     private Date dateSent;
 

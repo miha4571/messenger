@@ -49,5 +49,10 @@
         <input type="button" value="Clear storage" onclick="localStorage.removeItem('messengerAppData'); document.getElementById('userData').textContent  = JSON.stringify(JSON.parse(localStorage.getItem('messengerAppData')), undefined, 2);">
         <pre id="userData"></pre>
     </div>
+    <br>
+    <div>
+        <p>Load test user private keys:</p>
+        <input type="button" value="Load" onclick="loadTestUsers()">
+    </div>
 </body>
 </html>

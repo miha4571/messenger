@@ -6,14 +6,11 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-<script type="text/javascript" th:src="@{/javascript/home.js}"></script>
-<script>
-    const userId = "[[${userId}]]";
-    registerCheck(userId);
-</script>
 <body>
     <p>Welcome to a secure messenger app.</p>
     <p th:text="${greeting}"></p>
+    <p th:text="'Logged in user id: ' + ${loggedInUserId}"></p>
+    <p id="privateKeyCheckMessage"></p>
     <span sec:authorize="isAuthenticated()">Hello, <span sec:authentication="name"></span></span>
     <div sec:authorize="!isAuthenticated()">
         <a href="/login">login</a>
@@ -31,5 +28,14 @@
     <p>
         <a href="/test">view test page</a>
     </p>
+    <p>
+        <a href="/h2-console">view h2 console</a>
+    </p>
 </body>
+<script type="text/javascript" th:src="@{/javascript/home.js}"></script>
+<script>
+    const userId = "[[${userId}]]";
+    registerCheck(userId);
+    privateKeyCheck(userId);
+</script>
 </html>

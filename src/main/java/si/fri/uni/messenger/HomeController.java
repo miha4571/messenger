@@ -37,6 +37,14 @@ public class HomeController {
             model.addAttribute("userId", user.getId());
         }
 
+        if(authentication != null && authentication.isAuthenticated()) {
+            User user = userService.getUserByUsername(principal.getName());
+            Long userId = user == null ? null : user.getId();
+            model.addAttribute("loggedInUserId", userId);
+        } else {
+            model.addAttribute("loggedInUserId", "Not logged in.");
+        }
+
         return "homepage";
     }
 

@@ -52,20 +52,29 @@ public class MessageController {
     }
 
     @GetMapping("/send/{userId}")
-    public String renderViewSend(Model model, @PathVariable(name = "userId") String userId) {
+    public String renderViewSend(Model model, @PathVariable(name = "userId") String userId, Authentication authentication, Principal principal) {
         model.addAttribute("userId", userId);
         model.addAttribute("message", new Message());
 
         User user = userService.getUserById(Long.valueOf(userId));
         model.addAttribute("receiverUserId", user.getId());
+        model.addAttribute("receiverPublicKey", user.getPublicKey());
+
+        if(authentication != null && authentication.isAuthenticated()) {
+            User user1 = userService.getUserByUsername(principal.getName());
+            Long userId1 = user1 == null ? null : user1.getId();
+            model.addAttribute("loggedInUserId", userId1);
+        } else {
+            model.addAttribute("loggedInUserId", "Not logged in.");
+        }
 
         return "send-message";
     }
 
     @PostMapping("/send/{userId}")
-    public void doSend(@ModelAttribute Message message, Model model, HttpServletResponse response, @PathVariable(name = "userId") Long userId) {
+    public void doSend(@ModelAttribute Message message, Model model, HttpServletResponse response, @PathVariable(name = "userId") Long userId, Authentication authentication, Principal principal) {
 
-        User fromUser = userService.getUserById(1L);
+        User fromUser = userService.getUserByUsername(principal.getName());
         User toUser = userService.getUserById(userId);
 
         messageService.createMessage(fromUser, toUser, message.getMessageContent());
