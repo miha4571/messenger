@@ -38,7 +38,7 @@ public class UserController {
 
         User user = null;
         try {
-            user = userService.createUser(employee.getUsername(), employee.getPassword(), employee.getPassword());
+            user = userService.createUser(employee.getUsername(), employee.getPassword(), employee.getPublicKey());
         } catch (Throwable t) {
             model.addAttribute("message", "Username already exists.");
             return "register";
