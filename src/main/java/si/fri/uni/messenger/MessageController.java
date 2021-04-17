@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -24,9 +26,23 @@ public class MessageController {
     }
 
     @GetMapping("/messages")
-    public String renderViewMessages(Model model) {
+    public String renderViewMessages(Model model, Authentication authentication, Principal principal) {
 
-        List<Message> messages = messageService.getMessages();
+        User user = null;
+        List<Message> messages = new ArrayList<>();
+
+        if(authentication != null && authentication.isAuthenticated()) {
+            user = userService.getUserByUsername(principal.getName());
+            model.addAttribute("user", user);
+        } else {
+            model.addAttribute("user", null);
+            model.addAttribute("messages", messages);
+            return "messages-list";
+        }
+
+
+        messages = messageService.getMessagesForUser(user);
+        messages.sort(Comparator.comparing(Message::getDateSent).reversed());
 
         model.addAttribute("messages", messages);
 
@@ -44,6 +60,7 @@ public class MessageController {
             User user = userService.getUserByUsername(principal.getName());
             Long userId = user == null ? null : user.getId();
             model.addAttribute("loggedInUserId", userId);
+            model.addAttribute("user", user);
         } else {
             model.addAttribute("loggedInUserId", "Not logged in.");
         }

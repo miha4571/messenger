@@ -1,8 +1,10 @@
 
 async function decodeMessage() {
     try {
+        document.getElementById("decodedMessage2").innerText = 'Decrypting...';
+
         // read private key
-        let privateKeyExport = document.getElementById("privateKey").value;
+        let privateKeyExport = loggedInPrivateKey;
         console.log('Private key: ' + privateKeyExport);
         let jwk = JSON.parse(privateKeyExport);
         let privateKey = await crypto.subtle.importKey(
@@ -17,7 +19,7 @@ async function decodeMessage() {
         );
 
         // read message
-        let encryptedMessage = document.getElementById("encodedMessage2").value;
+        let encryptedMessage = messageContent;
         let encryptedMessageArrayBuffer = Uint8Array.from(atob(encryptedMessage), c => c.charCodeAt(0))
         console.log('Encrypted message: ' + encryptedMessage);
 
@@ -33,8 +35,9 @@ async function decodeMessage() {
         // write message
         let decoder = new TextDecoder();
         let decodedMessage = decoder.decode(decryptedMessage);
-        console.log('Decrypted message: ' + decryptedMessage);
-        document.getElementById("decodedMessage").value = decodedMessage;
+        console.log('Decrypted message: ' + decodedMessage);
+        //document.getElementById("decodedMessage").value = decodedMessage;
+        document.getElementById("decodedMessage2").innerText = decodedMessage;
     } catch (e) {
         console.log("Exception: " + e);
     }

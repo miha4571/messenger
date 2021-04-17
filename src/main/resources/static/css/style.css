@@ -1,0 +1,25 @@
+
+/* overwrite bootstrap 5 change */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.btn.btn-link {
+    text-decoration: none;
+}
+
+a.btn.btn-link:hover {
+    text-decoration: underline;
+}
+
+button.btn.btn-link {
+    text-decoration: none;
+}
+
+button.btn.btn-link:hover {
+    text-decoration: underline;
+}

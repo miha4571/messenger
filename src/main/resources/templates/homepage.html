@@ -5,15 +5,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
         <div class="row">
+            <!-- NAVIGATION -->
             <div class="col-md-2">
-                <h4>
-                    Navigation
-                </h4>
+                <h4>Navigation</h4>
                 <hr>
+
                 <p>
                     <a href="/messages">Messages</a><br>
                     <small>View your messages.</small>
@@ -28,52 +31,51 @@
                 </p>
                 <p>
                     <a href="/h2-console">H2 console</a><br>
-                    <small>View in memory database.</small>
+                    <small>View the in-memory database.</small>
                 </p>
             </div>
+
+            <!-- MAIN -->
             <div class="col-md-6">
-                <h2>
-                    Messenger App
-                </h2>
-                <h3>
-                    Welcome to a secure messenger app.
-                </h3>
+                <h2>Messenger App</h2>
+                <h4>Welcome to a simple secure messaging app.</h4>
                 <hr>
 
                 <div>
                     <p>
                         Login status:
-                        <span th:if="${loggedInUserId}">
+                        <span class="text-success" th:if="${loggedInUserId}">
                             Logged in
                         </span>
-                        <span th:if="!${loggedInUserId}">
+                        <span class="text-danger" th:if="!${loggedInUserId}">
                             Not logged in
                         </span>
                     </p>
                 </div>
 
                 <div class="card">
-                    <div class="text-center mt-2">
+                    <div class="text-center mt-3">
                         <h5>User data</h5>
                     </div>
 
-                    <div >
+                    <div>
                         <div class="card-body">
-
-                            <div th:if="!${user}">
+                            <div class="text-center" th:if="!${user}">
                                 <p>You are not logged in. Login to view your user data.</p>
                             </div>
 
                             <div th:if="${user}">
-                                <p id="privateKeyCheckMessage"></p>
-                                <p th:text="'Id: ' + ${user.getId()}"></p>
-                                <p th:text="'Username: ' + ${user.getUsername()}"></p>
-                                <p th:text="'Public key: ' + ${user.getPublicKey()}"></p>
+                                <small class="text-muted">Private key: </small><p id="privateKeyCheckMessage"></p>
+                                <small class="text-muted">Id: </small><p th:text="${user.getId()}"></p>
+                                <small class="text-muted">Username: </small><p th:text="${user.getUsername()}"></p>
+                                <small class="text-muted">Public key: </small><p th:text="${user.getPublicKey()}"></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- ACTIONS -->
             <div class="col-md-4">
                 <h4>
                     Actions
@@ -94,6 +96,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 <script type="text/javascript" th:src="@{/javascript/home.js}"></script>
 <script>
@@ -101,6 +104,4 @@
     registerCheck(userId);
     privateKeyCheck(userId);
 </script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </html>

@@ -3,26 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Messages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-    <p>View all messages.</p>
-    <p>
-        <a href="/messages">read message</a>
-    </p>
-    <p>
-        <a href="/home">go back</a>
-    </p>
-    <br>
-    <div>Messages:</div>
-    <div th:if="${messages.isEmpty()}">
-        <span>No messages found.</span>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- NAVIGATION -->
+            <div class="col-md-2">
+                <h4>
+                    Navigation
+                </h4>
+                <hr>
+                <p>
+                    <a href="/home">Go back</a>
+                </p>
+            </div>
+
+            <!-- MAIN -->
+            <div class="col-md-6">
+                <h3>
+                    Received Messages
+                </h3>
+                <p>View your received messages.</p>
+                <hr>
+
+                <div th:if="${messages.isEmpty()}">
+                    <span>You have no received messages ...</span>
+                </div>
+
+                <div th:unless="${messages.isEmpty()}">
+                    <div th:each="message: ${messages}">
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="row h-100">
+
+                                    <div class="col-md-1 my-auto text-center text-muted">
+                                        <h3>
+                                            <span class="align-middle" th:text="${message.getId()}"></span>
+                                        </h3>
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <div class="card-title">
+                                            <small class="text-muted">from </small><span th:text="${message.getFromUser().getUsername()}"></span>
+                                        </div>
+                                        <div class="card-subtitle">
+                                            <small class="text-muted">on </small><small th:text="${message.getDateSent()}"></small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 my-auto text-center">
+                                        <a class="btn btn-link" th:href="@{'/messages/'+${message.getId()}}">Open</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="col-md-4">
+
+            </div>
+        </div>
     </div>
-    <div th:unless="${messages.isEmpty()}">
-        <ul th:each="message: ${messages}">
-            <li>
-                <span th:text="${'on '+message.getDateSent()+' from '+message.getFromUser().getUsername()+': '}"></span><a th:href="@{'/messages/'+${message.getId()}}">Open</span> </a>
-            </li>
-        </ul>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 </html>
