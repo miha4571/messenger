@@ -62,6 +62,6 @@ function privateKeyCheck(userId) {
     if(privateKeyMissing) {
         message.innerText = "Private key is missing!";
     } else {
-        message.innerText = "Private key ok.";
+        message.innerText = "Private key loaded.";
     }
 }

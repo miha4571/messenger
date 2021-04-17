@@ -38,13 +38,41 @@
                 <h3>
                     Welcome to a secure messenger app.
                 </h3>
-
                 <hr>
 
-                <p th:text="${greeting}"></p>
-                <p th:text="'Logged in user id: ' + ${loggedInUserId}"></p>
-                <p id="privateKeyCheckMessage"></p>
-                <span sec:authorize="isAuthenticated()">Hello, <span sec:authentication="name"></span></span>
+                <div>
+                    <p>
+                        Login status:
+                        <span th:if="${loggedInUserId}">
+                            Logged in
+                        </span>
+                        <span th:if="!${loggedInUserId}">
+                            Not logged in
+                        </span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="text-center mt-2">
+                        <h5>User data</h5>
+                    </div>
+
+                    <div >
+                        <div class="card-body">
+
+                            <div th:if="!${user}">
+                                <p>You are not logged in. Login to view your user data.</p>
+                            </div>
+
+                            <div th:if="${user}">
+                                <p id="privateKeyCheckMessage"></p>
+                                <p th:text="'Id: ' + ${user.getId()}"></p>
+                                <p th:text="'Username: ' + ${user.getUsername()}"></p>
+                                <p th:text="'Public key: ' + ${user.getPublicKey()}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
                 <h4>
