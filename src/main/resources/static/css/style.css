@@ -1,5 +1,6 @@
 
 /* overwrite bootstrap 5 change */
+
 a {
     text-decoration: none;
 }
@@ -21,5 +22,13 @@ button.btn.btn-link {
 }
 
 button.btn.btn-link:hover {
+    text-decoration: underline;
+}
+
+input.btn.btn-link {
+    text-decoration: none;
+}
+
+input.btn.btn-link:hover {
     text-decoration: underline;
 }

@@ -2,10 +2,80 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Send Message</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
-<script type="text/javascript" th:src="@{/javascript/send-message.js}"></script>
 <body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- NAVIGATION -->
+            <div class="col-md-2">
+                <h4>Navigation</h4>
+                <hr>
+                <p><a href="/users">Go back</a></p>
+            </div>
+
+            <!-- MAIN -->
+            <div class="col-md-6">
+                <h3>Send Message</h3>
+                <p>Send message to <span th:text="${user.getId()}"></span></p>
+                <hr>
+
+                <div class="card mb-2">
+                    <form method="post" th:action="@{'/send/'+${userId}}" th:object="${message}">
+                    <div class="card-body">
+                        <div class="row h-100">
+
+                            <div class="col-md-1 my-auto text-center text-muted">
+                                <h3 class="my-auto">
+                                    <span th:text="${user.getId()}"></span>
+                                </h3>
+                            </div>
+
+                            <div class="col-md-7 card-title my-auto h-100">
+                                <h3 class="my-auto">
+                                    <span th:text="${user.getUsername()}"></span>
+                                </h3>
+                            </div>
+
+                            <div class="col-md-4 my-auto text-center">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <button class="btn btn-link" onclick="encodeMessage()">Encode</button>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input class="btn btn-link" type="submit" value="Send"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+
+                        <div class="row">
+                            <div class="form-group mt-2">
+                                <label for="rawMessage"><small class="text-muted">Raw message:</small></label>
+                                <textarea class="form-control" id="rawMessage"></textarea>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="encodedMessage2"><small class="text-muted">Encoded message:</small></label>
+                                <textarea class="form-control" disabled id="encodedMessage2" th:field="*{messageContent}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+
+
     <p>Create new message.</p>
     <p>
         <a href="/home">go back</a>
@@ -30,10 +100,13 @@
         <br>
         <input type="submit" value="Send"/><br>
     </form>
+
+    <script>
+        const userId = "[[${userId}]]";
+        const receiverPublicKey = atob("[[${receiverPublicKey}]]");
+        document.getElementById("publicKey").value = receiverPublicKey;
+    </script>
+    <script type="text/javascript" th:src="@{/javascript/send-message.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
-<script>
-    const userId = "[[${userId}]]";
-    const receiverPublicKey = atob("[[${receiverPublicKey}]]");
-    document.getElementById("publicKey").value = receiverPublicKey;
-</script>
 </html>

@@ -73,14 +73,16 @@ public class MessageController {
         model.addAttribute("userId", userId);
         model.addAttribute("message", new Message());
 
-        User user = userService.getUserById(Long.valueOf(userId));
-        model.addAttribute("receiverUserId", user.getId());
-        model.addAttribute("receiverPublicKey", user.getPublicKey());
+        User userTo = userService.getUserById(Long.valueOf(userId));
+        model.addAttribute("receiverUserId", userTo.getId());
+        model.addAttribute("receiverPublicKey", userTo.getPublicKey());
 
         if(authentication != null && authentication.isAuthenticated()) {
-            User user1 = userService.getUserByUsername(principal.getName());
-            Long userId1 = user1 == null ? null : user1.getId();
+            User user = userService.getUserByUsername(principal.getName());
+            Long userId1 = user == null ? null : user.getId();
             model.addAttribute("loggedInUserId", userId1);
+            model.addAttribute("user", user);
+            model.addAttribute("userTo", userTo);
         } else {
             model.addAttribute("loggedInUserId", "Not logged in.");
         }
