@@ -1,10 +1,9 @@
 
 async function encodeMessage() {
     try {
-        // read public key
-        let publicKeyExport = document.getElementById("publicKey").value;
-        console.log('Public key: ' + publicKeyExport);
-        let jwk = JSON.parse(publicKeyExport);
+        document.getElementById("encodedMessage2").value = 'Encrypting...';
+        console.log('Public key: ' + receiverPublicKey);
+        let jwk = JSON.parse(receiverPublicKey);
         let publicKey = await crypto.subtle.importKey(
             "jwk",
             jwk,
@@ -17,7 +16,7 @@ async function encodeMessage() {
         );
 
         // read message
-        let rawMessage = document.getElementById("message").value;
+        let rawMessage = document.getElementById("rawMessage").value;
         console.log('Raw message: ' + rawMessage);
 
         // encode message
@@ -34,7 +33,8 @@ async function encodeMessage() {
         // write message
         let base64Message = btoa(String.fromCharCode.apply(null, new Uint8Array(encryptedMessage)));
         console.log('Encrypted message: ' + base64Message);
-        document.getElementById("encodedMessage").value = base64Message;
+        document.getElementById("encodedMessage2").value = base64Message;
+        document.getElementById("sendButton").disabled = false;
     } catch (e) {
         console.log("Exception: " + e);
     }
