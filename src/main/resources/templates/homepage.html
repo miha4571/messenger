@@ -81,17 +81,17 @@
                     Actions
                 </h4>
                 <div sec:authorize="!isAuthenticated()">
-                    <p>
-                        <a href="/login">Login</a>
-                    </p>
-                    <p>
-                        <a href="/register">Create new account</a>
-                    </p>
+                    <div class="row">
+                        <a class="btn-link" href="/login">Login</a>
+                    </div>
+                    <div class="row">
+                        <a class="btn-link" href="/register">Create new account</a>
+                    </div>
                 </div>
                 <div sec:authorize="isAuthenticated()">
-                    <p>
-                        <a href="/logout">Logout</a>
-                    </p>
+                    <form method="post" th:action="@{'/logout'}">
+                        <button class="link-btn btn-link" type="submit">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>

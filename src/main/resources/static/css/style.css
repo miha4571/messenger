@@ -17,11 +17,27 @@ a.btn.btn-link:hover {
     text-decoration: underline;
 }
 
+a.btn-link {
+    text-decoration: none;
+}
+
+a.btn-link:hover {
+    text-decoration: underline;
+}
+
 button.btn.btn-link {
     text-decoration: none;
 }
 
 button.btn.btn-link:hover {
+    text-decoration: underline;
+}
+
+button.btn-link {
+    text-decoration: none;
+}
+
+button.btn-link:hover {
     text-decoration: underline;
 }
 
@@ -31,4 +47,16 @@ input.btn.btn-link {
 
 input.btn.btn-link:hover {
     text-decoration: underline;
+}
+
+
+
+.link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }
