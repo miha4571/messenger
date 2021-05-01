@@ -39,4 +39,7 @@ async function generateAndSaveKeyPair() {
     console.log("Private key: " + JSON.stringify(privateKeyExport));
     console.log("Public key: " + JSON.stringify(publicKeyExport));
     console.log("Generation ok.");
+
+    let registerButton = document.getElementById("registerButton");
+    registerButton.disabled = false;
 }

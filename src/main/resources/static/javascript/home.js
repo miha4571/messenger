@@ -60,8 +60,10 @@ function privateKeyCheck(userId) {
     let message = document.getElementById("privateKeyCheckMessage");
     console.log(message);
     if(privateKeyMissing) {
+        message.className = "text-danger";
         message.innerText = "missing";
     } else {
+        message.className = "text-success";
         message.innerText = "loaded";
     }
 }
