@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <title>Test Page</title>
 </head>
-<script type="text/javascript" th:src="@{/javascript/test-utils.js}"></script>
-<script>
-    window.onload = function () {
-        document.getElementById("userData").textContent  = JSON.stringify(JSON.parse(localStorage.getItem("messengerAppData")), undefined, 2);
-    }
-</script>
 <body>
     <p>Test utils.</p>
     <p>
@@ -45,14 +39,21 @@
     </div>
     <br>
     <div>
-        <p>User data stored in local storage:</p>
-        <input type="button" value="Clear storage" onclick="localStorage.removeItem('messengerAppData'); document.getElementById('userData').textContent  = JSON.stringify(JSON.parse(localStorage.getItem('messengerAppData')), undefined, 2);">
-        <pre id="userData"></pre>
-    </div>
-    <br>
-    <div>
         <p>Load test user private keys:</p>
         <input type="button" value="Load" onclick="loadTestUsers()">
     </div>
+    <br>
+    <div>
+        <p>User data stored in local storage:</p>
+        <input type="button" value="Clear storage" onclick="clearLocalStorage()">
+        <pre id="userData"></pre>
+    </div>
+
+    <script type="text/javascript" th:src="@{/javascript/test-utils.js}"></script>
+    <script>
+        window.onload = function () {
+            displayLocalStorage();
+        }
+    </script>
 </body>
 </html>

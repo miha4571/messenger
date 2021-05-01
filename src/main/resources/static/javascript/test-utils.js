@@ -112,7 +112,17 @@ function loadTestUsers() {
 
         console.log("Test users loaded.");
 
+        displayLocalStorage();
     } catch (e) {
         console.log("Exception: " + e);
     }
+}
+
+function clearLocalStorage() {
+    localStorage.removeItem('messengerAppData');
+    displayLocalStorage();
+}
+
+function displayLocalStorage() {
+    document.getElementById('userData').textContent  = JSON.stringify(JSON.parse(localStorage.getItem('messengerAppData')), undefined, 2);
 }
