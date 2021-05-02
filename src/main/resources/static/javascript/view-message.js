@@ -6,6 +6,13 @@ async function decodeMessage() {
         // read private key
         let privateKeyExport = loggedInPrivateKey;
         console.log('Private key: ' + privateKeyExport);
+
+        if(!privateKeyExport) {
+            console.log('Private key missing!');
+            document.getElementById("decodedMessage2").innerText = 'Decrypting failed: private key is missing.';
+            return;
+        }
+
         let jwk = JSON.parse(privateKeyExport);
         let privateKey = await crypto.subtle.importKey(
             "jwk",

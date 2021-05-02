@@ -49,10 +49,10 @@
                         <hr/>
 
                         <div class="row">
-                            <small class="text-muted">Encoded message:</small>
+                            <small class="text-muted">Encrypted message:</small>
                             <p th:text="${message.getMessageContent()}"></p>
 
-                            <small class="text-muted">Decoded message:</small>
+                            <small class="text-muted">Decrypted message:</small>
                             <p style="min-height: 5em;" id="decodedMessage2"></p>
                         </div>
                     </div>
@@ -69,7 +69,11 @@
     <script>
         const userId = "[[${user.getId()}]]";
         const messageContent = "[[${message.getMessageContent()}]]";
-        const loggedInPrivateKey = JSON.parse(localStorage.getItem("messengerAppData")).userData[userId.toString()].privateKey;
+        let data = localStorage.getItem("messengerAppData");
+        let loggedInPrivateKey = null;
+        if(data) {
+            loggedInPrivateKey = JSON.parse(data).userData[userId.toString()].privateKey;
+        }
     </script>
     <script type="text/javascript" th:src="@{/javascript/view-message.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
