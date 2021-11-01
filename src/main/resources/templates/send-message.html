@@ -54,6 +54,12 @@
                         <hr/>
 
                         <div class="row">
+                            <small class="text-muted">Public key:</small>
+                            <p th:text="${user.getPublicKey()}"></p>
+                        </div>
+                        <hr/>
+
+                        <div class="row">
                             <div class="form-group mt-2">
                                 <label for="rawMessage"><small class="text-muted">Raw message:</small></label>
                                 <textarea class="form-control" id="rawMessage"></textarea>
